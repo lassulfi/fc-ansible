@@ -1,0 +1,57 @@
+---
+# tasks file for install_nginx
+
+- name: Install nginx
+  apt:
+    pkg:
+      - nginx
+      - nodejs
+      - npm
+    state: present
+    update_cache: yes
+
+- name: Init nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Create dir /app
+  file:
+    path: /app
+    state: directory
+
+- name: Copy package.json
+  copy:
+    src: package.json
+    dest: /app/package.json
+
+- name: Run npm install
+  npm:
+    path: /app
+    state: present
+
+- name: Copy index.js
+  template:
+    src: index.js.j2
+    dest: /app/index.js
+
+- name: Copy app.service
+  copy:
+    src: app.service
+    dest: /etc/systemd/system/app.service
+
+- name: Enable app.service
+  systemd:
+    name: app
+    enabled: yes
+
+- name: Run app service
+  systemd:
+    name: app
+    state: started
+
+- name: Copy nginx.conf 
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: reload nginx

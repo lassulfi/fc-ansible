@@ -1,0 +1,23 @@
+1. Executar o ping nas máquinas AWS
+
+Antes de executar o ping, deve ser liberado o acesso a key-pair da AWS. Para isso, execute o seguinte comando:
+
+chmod 400 caminho_da_key-pair.cer
+
+para executar o ping, rode o seguinte comando ansible -i hosts all -m ping
+
+2. Comando para rodar o playbook
+
+Para rodar o playbook, execute o seguinte comando:
+
+ansible-playbook -i hosts playbook.yaml
+
+3. Organizar as roles com ansible-galaxy
+
+Para iniciar a criação das roles, acesse a pasta roles e digite o seguinte comando:
+
+ansible-galaxy init nome_da_role
+
+Para executar as tarefas das roles, execute o seguinte comando (ainda na pasta role): 
+
+ansible-playbook -i ../hosts main.yaml

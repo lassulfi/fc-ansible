@@ -1,0 +1,29 @@
+Comandos das aulas
+
+Obs: não é necessário ter o ansible instalado nos nodes.
+
+1. Exercicio ping:
+
+ansible -i hosts all -m ping
+
+onde:
+- 'i' é o arquivo de inventario todos os ips das máquinas
+- 'all' indica que o comando será executado em todos
+- '-m' significa o modulo do ansible
+- 'ping' é o comando do ansible
+
+2. Conectar em outra maquina usando ssh a partir do root:
+
+ssh root@node1
+
+obs: é necessário iniciar o ssh nos nodes para isso, acesse o node e execute o seguinte comando:
+
+service ssh start
+
+também é necessário gerar uma chave no root, para isso, execute o seguinte comando:
+
+ssh-keygen
+
+3 Copiar uma chave publica para outra máquina a partir do root:
+
+ssh-copy-id root@node1

@@ -1,0 +1,10 @@
+# Aqui devem ser informados os IPs das máquinas no cloud provider
+[manager]
+# Informar aqui o IP das máquinas que irão gerenciar os workers
+
+[worker]
+# Informar aqui o IP dos workers
+
+[all:vars]
+ansible_ssh_private_key_file= # caminho da chave ssh
+ansible_user=ubuntu
